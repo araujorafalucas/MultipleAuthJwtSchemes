@@ -1,12 +1,9 @@
-﻿using CursoApiCore.Models;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
+using MultipleAuthSchemes.Models;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MultipleAuthSchemes.Services
 {
@@ -14,9 +11,9 @@ namespace MultipleAuthSchemes.Services
     {
         public static ClientToken GenerateToken(User user)
         {
-            string secret = "myunlegiveblealphasecret";
-            string audience = "AudienceClientAlpha";
-            string issuer = "IssuerClientAlpha";
+            string secret = "myunlegiveblebetasecret";
+            string audience = "AudienceClientBeta";
+            string issuer = "IssuerClientBeta";
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
             var credenciais = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
@@ -27,7 +24,7 @@ namespace MultipleAuthSchemes.Services
                                 };
 
             JwtSecurityToken token = new JwtSecurityToken(
-                                                           audience: audience
+                                                          audience: audience
                                                           , issuer: issuer
                                                           , claims: claims
                                                           , expires: expiration
